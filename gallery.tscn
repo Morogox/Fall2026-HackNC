@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://7vp6gy6aatai"]
+
+[ext_resource type="PackedScene" uid="uid://b7mqhk67dvicy" path="res://floor.tscn" id="1_0uoo4"]
+[ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
+[ext_resource type="PackedScene" uid="uid://cw02nap2vnvun" path="res://wall.tscn" id="3_31do6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pb8yt"]
+sky_top_color = Color(0.32864922, 0.672804, 0.93817616, 1)
+
+[sub_resource type="Sky" id="Sky_4wx7g"]
+sky_material = SubResource("ProceduralSkyMaterial_pb8yt")
+
+[sub_resource type="Environment" id="Environment_ptxhn"]
+background_mode = 2
+background_color = Color(0.32915837, 0.3291584, 0.3291584, 1)
+sky = SubResource("Sky_4wx7g")
+
+[node name="Gallery" type="Node3D" unique_id=639647967]
+
+[node name="Floor" parent="." unique_id=20147003 instance=ExtResource("1_0uoo4")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=160723234 instance=ExtResource("2_31do6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9287479, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=876059367]
+transform = Transform3D(1, 0, 0, 0, 0.29509288, 0.9554685, 0, -0.9554685, 0.29509288, -4.23962, 10.151313, 0)
+
+[node name="Wall" parent="." unique_id=793010928 instance=ExtResource("3_31do6")]
+transform = Transform3D(15, 0, 0, 0, 5, 0, 0, 0, 5, -0.024408817, 2.5074997, -6.898263)
+
+[node name="Wall2" parent="." unique_id=814794305 instance=ExtResource("3_31do6")]
+transform = Transform3D(15, 0, 0, 0, 5, 0, 0, 0, 5, -0.024408817, 2.5074997, 7.4453382)
+
+[node name="Wall3" parent="." unique_id=152292076 instance=ExtResource("3_31do6")]
+transform = Transform3D(-6.556708e-07, 0, 5, 0, 5, 0, -15, 0, -2.1855695e-07, -7.1082106, 2.5074997, 0.21593618)
+
+[node name="Wall4" parent="." unique_id=2083020375 instance=ExtResource("3_31do6")]
+transform = Transform3D(-6.556708e-07, 0, 5, 0, 5, 0, -15, 0, -2.1855695e-07, 7.4254227, 2.5074997, 0.21593618)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=173928408]
+environment = SubResource("Environment_ptxhn")
