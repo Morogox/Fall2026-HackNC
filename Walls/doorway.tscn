@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://daamw62get2u2"]
+
+[ext_resource type="PackedScene" uid="uid://cet3yblh2td2s" path="res://Walls/wall_empty.tscn" id="1_14gom"]
+
+[node name="Doorway" type="Node3D" unique_id=1661819788]
+
+[node name="Wall" parent="." unique_id=793010928 instance=ExtResource("1_14gom")]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 0, 0)
+
+[node name="Wall2" parent="." unique_id=1925794284 instance=ExtResource("1_14gom")]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0, 0)
+
+[node name="Connection" type="Marker3D" parent="." unique_id=1786930438]

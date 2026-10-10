@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://df1mrq3qpaqll"]
+
+[ext_resource type="PackedScene" uid="uid://b7mqhk67dvicy" path="res://floor.tscn" id="1_23v6p"]
+[ext_resource type="PackedScene" uid="uid://daamw62get2u2" path="res://Walls/doorway.tscn" id="3_8e036"]
+
+[node name="Room1" type="Node3D" unique_id=142765855]
+
+[node name="Floor" parent="." unique_id=1210939132 instance=ExtResource("1_23v6p")]
+
+[node name="Walls" type="Node" parent="." unique_id=1257660016]
+
+[node name="Doorway3" parent="Walls" unique_id=747832143 instance=ExtResource("3_8e036")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 5, 0)
+
+[node name="Doorway4" parent="Walls" unique_id=2090561354 instance=ExtResource("3_8e036")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7)
+
+[node name="Doorway" parent="Walls" unique_id=1587857219 instance=ExtResource("3_8e036")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 5, 0)
+
+[node name="Doorway2" parent="Walls" unique_id=1661819788 instance=ExtResource("3_8e036")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 7)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=448193314]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 18, 0)
+light_energy = 80.0
+spot_range = 21.0
+spot_angle = 53.61389

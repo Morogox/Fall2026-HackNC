@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7vp6gy6aatai"]
 
-[ext_resource type="PackedScene" uid="uid://df1mrq3qpaqll" path="res://room1.tscn" id="2_0uoo4"]
+[ext_resource type="PackedScene" uid="uid://c2ypg8nbex1pe" path="res://Rooms/room_box.tscn" id="2_0uoo4"]
 [ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pb8yt"]
@@ -19,10 +19,7 @@ sky = SubResource("Sky_4wx7g")
 [node name="Player" parent="." unique_id=160723234 instance=ExtResource("2_31do6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9287479, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=876059367]
-transform = Transform3D(1, 0, 0, 0, 0.29509288, 0.9554685, 0, -0.9554685, 0.29509288, -4.23962, 10.151313, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=173928408]
 environment = SubResource("Environment_ptxhn")
 
-[node name="Room1" parent="." unique_id=142765855 instance=ExtResource("2_0uoo4")]
+[node name="RoomFilled" parent="." unique_id=1752368277 instance=ExtResource("2_0uoo4")]
