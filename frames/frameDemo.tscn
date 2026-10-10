@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bdbbqyibknmaw"]
+
+[ext_resource type="PackedScene" uid="uid://cdx7yfuw6ftxq" path="res://frames/portrait.fbx" id="1_fvmj3"]
+[ext_resource type="PackedScene" uid="uid://bkht36iq3ry4n" path="res://frames/square.fbx" id="2_olsg7"]
+[ext_resource type="PackedScene" uid="uid://s5sxb3vaaojl" path="res://frames/landscape.fbx" id="3_olsg7"]
+
+[node name="FrameDemo" type="Node3D" unique_id=1610005226]
+
+[node name="portrait" parent="." unique_id=1277493779 instance=ExtResource("1_fvmj3")]
+
+[node name="square" parent="." unique_id=334183200 instance=ExtResource("2_olsg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8650837)
+
+[node name="landscape" parent="." unique_id=1171616731 instance=ExtResource("3_olsg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2468538, 5.9604645e-08, -7.797866)
