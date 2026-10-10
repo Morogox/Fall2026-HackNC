@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bh5roufdwkthd"]
+
+[ext_resource type="Script" uid="uid://bky2lvk6th4hf" path="res://ui/file_upload.gd" id="1_pbrm2"]
+
+[node name="FileUpload" type="Node2D" unique_id=1049936596]
+
+[node name="FileUploadManager" type="Node" parent="." unique_id=1337539214]
+script = ExtResource("1_pbrm2")
+
+[node name="File Upload" type="Button" parent="." unique_id=1035539304]
+offset_right = 255.0
+offset_bottom = 50.0
+text = "Upload Images"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=380942016]
+offset_top = 65.0
+offset_right = 40.0
+offset_bottom = 105.0
+
+[connection signal="pressed" from="File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
