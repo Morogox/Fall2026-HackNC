@@ -10,6 +10,7 @@ size = Vector3(1, 0.001, 1)
 size = Vector3(1, 0.001, 1)
 
 [node name="Floor" type="StaticBody3D" unique_id=1210939132]
+transform = Transform3D(14, 0, 0, 0, 14, 0, 0, 0, 14, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1740663316]
 material_override = SubResource("StandardMaterial3D_qn0bo")
