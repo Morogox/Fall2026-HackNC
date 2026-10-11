@@ -5,12 +5,51 @@ extends CharacterBody3D
 @export var mouse_sensitivity := 0.002
 
 @onready var head: Node3D = $Head
+@onready var wine: Node3D = $Head/Wine
+@onready var wine_drink: Node3D = $Head/wineDrink
+@onready var drink_audio: AudioStreamPlayer = $Head/DrinkAudio
+
+@export var drinking_sounds: Array[AudioStream]
 
 var gravity: float = 9.8
 
-
+var drinking := false
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept") and not drinking:
+		drink_wine()
+	
+func drink_wine() -> void:
+	drinking = true
+	var tween = create_tween()
+	var wine_start := wine.position
+	var drink_start := wine_drink.position
+	#lower wine and raise wineDrink
+	tween.tween_property(wine, "position", wine_start + Vector3(0, -0.5, 0), 0.3)
+	tween.parallel().tween_property(wine_drink, "position", drink_start + Vector3(0, 0.5, 0), 0.3)
+
+	#drinking pose.
+	tween.tween_interval(1.0)
+
+	#return both to their starting positions.
+	tween.tween_property(wine, "position", wine_start, 0.3)
+	tween.parallel().tween_property(wine_drink, "position", drink_start, 0.3)
+
+	tween.finished.connect(func():
+		drinking = false
+	)
+
+func play_drink_sound() -> void:
+	if drinking_sounds.is_empty():
+		return
+
+	var sound = drinking_sounds.pick_random()
+	drink_audio.stream = sound
+	drink_audio.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
