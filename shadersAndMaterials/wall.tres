@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b7x4udocdn2qp"]
+
+[ext_resource type="Shader" uid="uid://vkjxnauveava" path="res://shadersAndMaterials/wallShader.gdshader" id="1_neonw"]
+[ext_resource type="Texture2D" uid="uid://c5tn7uji5l4v4" path="res://shadersAndMaterials/plaster.jpg" id="2_y1rnf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_neonw")
+shader_parameter/normal_texture = ExtResource("2_y1rnf")
+shader_parameter/color1 = Color(0.024142131, 5.896017e-07, 0.21168262, 1)
+shader_parameter/color2 = Color(0.9727022, 0.9166171, 0.88045293, 1)
+shader_parameter/normal_depth = 0.2770000131575
+shader_parameter/softness = 0.0
+shader_parameter/texture_scale = 0.2

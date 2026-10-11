@@ -1,13 +1,14 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://diw8eyinarhqu"]
 
 [ext_resource type="Shader" uid="uid://2tf2pkc8623o" path="res://shadersAndMaterials/frameShader.gdshader" id="1_7s3jp"]
+[ext_resource type="Texture2D" uid="uid://y6qarjxtawfb" path="res://shadersAndMaterials/woodNormal.jpg" id="2_7akkk"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_7s3jp")
-shader_parameter/albedo_tint = Color(1, 1, 1, 1)
-shader_parameter/roughness = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/color1 = Color(0, 0, 0, 1)
-shader_parameter/color2 = Color(1, 1, 1, 1)
-shader_parameter/threshold = 0.5
+shader_parameter/normal_texture = ExtResource("2_7akkk")
+shader_parameter/color1 = Color(0.12130333, 0.14903423, 0.22166216, 1)
+shader_parameter/color2 = Color(0.6883848, 0.57088524, 0.46375746, 1)
+shader_parameter/normal_depth = 0.062000002945
+shader_parameter/softness = 0.1990000094525
+shader_parameter/ambient_amount = 0.006000047784999962

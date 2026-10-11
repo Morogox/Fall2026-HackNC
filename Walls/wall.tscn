@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cw02nap2vnvun"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qn0bo"]
-albedo_color = Color(0.8992584, 0.8992584, 0.8992584, 1)
+[ext_resource type="Material" uid="uid://b7x4udocdn2qp" path="res://shadersAndMaterials/wall.tres" id="1_ujrbx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ptxhn"]
 size = Vector3(1, 1, 0.031555176)
@@ -13,7 +12,7 @@ size = Vector3(1, 1, 0.029937744)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=738805991]
 transform = Transform3D(14, 0, 0, 0, 10, 0, 0, 0, 5, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_qn0bo")
+material_override = ExtResource("1_ujrbx")
 mesh = SubResource("BoxMesh_ptxhn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1672415803]

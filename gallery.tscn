@@ -20,6 +20,26 @@ sky_material = ExtResource("3_tw5dh")
 background_mode = 2
 background_color = Color(0.32915837, 0.3291584, 0.3291584, 1)
 sky = SubResource("Sky_tw5dh")
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 2
+tonemap_mode = 3
+ssr_enabled = true
+ssr_max_steps = 128
+ssr_fade_out = 1.6245036
+ssr_depth_tolerance = 0.21
+ssao_radius = 6.37
+ssao_intensity = 8.29
+ssao_power = 0.16322789
+glow_enabled = true
+glow_intensity = 0.9
+glow_strength = 0.54
+glow_bloom = 0.69
+glow_hdr_threshold = 0.67
+glow_hdr_scale = 1.32
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.05
+adjustment_saturation = 1.05
 
 [node name="Gallery" type="Node3D" unique_id=639647967]
 script = ExtResource("1_d3htb")

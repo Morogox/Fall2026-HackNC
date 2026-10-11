@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bf5moo7xl8vet"]
+
+[ext_resource type="Shader" uid="uid://bfs41nfnkn5kk" path="res://shadersAndMaterials/floorShader.gdshader" id="1_aqr88"]
+[ext_resource type="Texture2D" uid="uid://drpjqc84dhaoi" path="res://shadersAndMaterials/granite.jpg" id="2_6ewy5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_aqr88")
+shader_parameter/normal_map = ExtResource("2_6ewy5")
+shader_parameter/metallic = 0.9370000445075
+shader_parameter/roughness = 0.158000007505
+shader_parameter/base_color = Color(0.07067352, 0.2664143, 0.5143682, 1)
+shader_parameter/texture_scale = 0.3
