@@ -212,8 +212,7 @@ func _on_all_files_ready() -> void:
 	ImageUtils._process_textures(uploaded_textures)
 	uploaded_textures.clear()
 
-	if ImageUtils.debug:
-		_swap_to_gallery_scene()
+	_swap_to_gallery_scene()
 
 
 func _debug_display_textures() -> void:
