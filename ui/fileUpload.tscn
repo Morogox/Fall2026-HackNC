@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bky2lvk6th4hf" path="res://ui/file_upload.gd" id="1_pbrm2"]
 [ext_resource type="Texture2D" uid="uid://cf8ct6nvirj87" path="res://SpritesGame/Frutiger Areo Window Gradient.png" id="2_wnu4c"]
 [ext_resource type="Texture2D" uid="uid://g741d7agdxg4" path="res://SpritesGame/Gallareo logo but it looks horrible because I've been up for 21 hours.png" id="3_jl8xe"]
+[ext_resource type="Script" uid="uid://cyb0he50o58yj" path="res://ui/prop_ratio_slider.gd" id="4_j6u1y"]
 [ext_resource type="Script" uid="uid://bm8mlkqtx488e" path="res://ui/close_game.gd" id="4_jrhxb"]
 
 [node name="FileUpload" type="Node2D" unique_id=1049936596]
@@ -52,6 +53,38 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=799603565]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=965164383]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1860300236]
+custom_minimum_size = Vector2(200, 20)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+value = 1.2
+allow_greater = true
+tick_count = 5
+script = ExtResource("4_j6u1y")
+
+[node name="Value" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" unique_id=2093528957]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_top = -27.0
+offset_right = 200.0
+offset_bottom = -4.0
+text = "Props per Image: 1.2"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1505346412]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=8105886]
 layout_mode = 2
 
@@ -84,5 +117,6 @@ offset_bottom = 32.0
 text = "Close"
 script = ExtResource("4_jrhxb")
 
+[connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" to="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

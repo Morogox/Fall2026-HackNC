@@ -74,8 +74,8 @@ func play_drink_sound() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if drinks > 5:
-			rotate_y(-event.relative.x * (mouse_sensitivity + (0.001 * drinks)))
-			head.rotate_x(-event.relative.y * (mouse_sensitivity + (0.001 * drinks)))
+			rotate_y(-event.relative.x * (mouse_sensitivity + (0.0005 * drinks)))
+			head.rotate_x(-event.relative.y * (mouse_sensitivity + (0.0005 * drinks)))
 		else:
 			rotate_y(-event.relative.x * mouse_sensitivity)
 			head.rotate_x(-event.relative.y * mouse_sensitivity)
