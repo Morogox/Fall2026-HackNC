@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bky2lvk6th4hf" path="res://ui/file_upload.gd" id="1_pbrm2"]
 [ext_resource type="Texture2D" uid="uid://cf8ct6nvirj87" path="res://SpritesGame/Frutiger Areo Window Gradient.png" id="2_wnu4c"]
-[ext_resource type="Texture2D" uid="uid://g741d7agdxg4" path="res://SpritesGame/Gallareo logo but it looks horrible because I've been up for 21 hours.png" id="3_jl8xe"]
+[ext_resource type="Texture2D" uid="uid://dynn2dohjyxbx" path="res://SpritesGame/Gallareo logo but it looks great because I've been up for 24 hours.png" id="3_brhtk"]
 [ext_resource type="Script" uid="uid://cyb0he50o58yj" path="res://ui/prop_ratio_slider.gd" id="4_j6u1y"]
 [ext_resource type="Script" uid="uid://bm8mlkqtx488e" path="res://ui/close_game.gd" id="4_jrhxb"]
 [ext_resource type="Texture2D" uid="uid://u7kksjsx65wx" path="res://SpritesGame/Frutiger Areo Background Gradient.png" id="5_qqo6r"]
@@ -47,7 +47,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1937199013]
 layout_mode = 2
-texture = ExtResource("3_jl8xe")
+texture = ExtResource("3_brhtk")
 
 [node name="Spacer" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1394446100]
 custom_minimum_size = Vector2(32, 0)
@@ -229,18 +229,52 @@ offset_bottom = -116.0
 text = "Close"
 script = ExtResource("7_831ql")
 
-[node name="Button" type="Button" parent="." unique_id=184082712]
-offset_left = -428.99997
-offset_top = -160.99998
-offset_right = -315.99997
-offset_bottom = -129.99998
-scale = Vector2(9.760926, 2.5022168)
+[node name="Upload Map" type="MarginContainer" parent="." unique_id=1853465998]
+offset_left = -424.0
+offset_top = -228.0
+offset_right = 306.0
+offset_bottom = -36.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Upload Map" unique_id=1160070005]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_wnu4c")
+patch_margin_left = 96
+patch_margin_top = 96
+patch_margin_right = 96
+patch_margin_bottom = 96
+
+[node name="CenterContainer" type="CenterContainer" parent="Upload Map" unique_id=339377763]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Upload Map/CenterContainer" unique_id=985793008]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="Upload Map/CenterContainer/HBoxContainer2" unique_id=1751725623]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Tutorial Text" type="Label" parent="Upload Map/CenterContainer/HBoxContainer2" unique_id=11824080]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "Play someone elses Gallareo:
+
+One person clicks \"Download Map\" on the pause menu when in game.
+You click \"Upload Map\" and put in the file"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Upload Map/CenterContainer/HBoxContainer2" unique_id=184082712]
+layout_mode = 2
 text = "UPLOAD MAP"
 script = ExtResource("9_brhtk")
+
+[node name="Spacer" type="Label" parent="Upload Map/CenterContainer/HBoxContainer2" unique_id=1199318946]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 
 [connection signal="value_changed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" to="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
 [connection signal="pressed" from="Close" to="Close" method="_on_pressed"]
 [connection signal="pressed" from="CloseTutorial" to="CloseTutorial" method="_on_pressed"]
 [connection signal="pressed" from="CloseCredits" to="CloseCredits" method="_on_pressed"]
-[connection signal="pressed" from="Button" to="Button" method="load_map"]
+[connection signal="pressed" from="Upload Map/CenterContainer/HBoxContainer2/Button" to="Upload Map/CenterContainer/HBoxContainer2/Button" method="load_map"]

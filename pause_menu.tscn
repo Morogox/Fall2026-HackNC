@@ -1,17 +1,20 @@
 [gd_scene format=3 uid="uid://cms3y1ko722x"]
 
 [ext_resource type="Script" uid="uid://23urg2u42xoa" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Texture2D" uid="uid://u7kksjsx65wx" path="res://SpritesGame/Frutiger Areo Background Gradient.png" id="2_2nc7s"]
 [ext_resource type="Script" uid="uid://csxg5uf2p2lc8" path="res://volume_slider.gd" id="2_nwcfo"]
 [ext_resource type="Script" uid="uid://dblsfjhdyu5n5" path="res://ui/file_download_and_encoder.gd" id="3_05uyy"]
+[ext_resource type="Texture2D" uid="uid://cf8ct6nvirj87" path="res://SpritesGame/Frutiger Areo Window Gradient.png" id="3_p81d2"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=931508829]
 process_mode = 3
 script = ExtResource("1_hdmo1")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=653582996]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1544490778]
+self_modulate = Color(1, 1, 1, 0.19607843)
 offset_right = 1200.0
 offset_bottom = 700.0
-color = Color(0.44313726, 0.44313726, 0.44313726, 0.44313726)
+texture = ExtResource("2_2nc7s")
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=939414857]
 layout_mode = 1
@@ -43,10 +46,49 @@ text = "Volume: -5.0 db"
 [node name="Spacer" type="Label" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1605256093]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=50258502]
+[node name="Tutorial" type="MarginContainer" parent="ColorRect" unique_id=599974041]
+layout_mode = 0
+offset_left = 405.0
+offset_top = -29.0
+offset_right = 768.0
+offset_bottom = 163.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ColorRect/Tutorial" unique_id=740966228]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("3_p81d2")
+patch_margin_left = 96
+patch_margin_top = 96
+patch_margin_right = 96
+patch_margin_bottom = 96
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/Tutorial" unique_id=443515476]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/Tutorial/CenterContainer" unique_id=1639987601]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="ColorRect/Tutorial/CenterContainer/HBoxContainer2" unique_id=1671233041]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Tutorial Text" type="Label" parent="ColorRect/Tutorial/CenterContainer/HBoxContainer2" unique_id=826535640]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "How this works:
+Press \"Download File\"
+Name it something
+Send it to a friend!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ColorRect/Tutorial/CenterContainer/HBoxContainer2" unique_id=50258502]
 layout_mode = 2
 text = "Download File"
 script = ExtResource("3_05uyy")
 
+[node name="Spacer" type="Label" parent="ColorRect/Tutorial/CenterContainer/HBoxContainer2" unique_id=1511249830]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
 [connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/volume" to="ColorRect/CenterContainer/VBoxContainer/volume" method="_on_value_changed"]
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Button" to="ColorRect/CenterContainer/VBoxContainer/Button" method="download_map"]
+[connection signal="pressed" from="ColorRect/Tutorial/CenterContainer/HBoxContainer2/Button" to="ColorRect/Tutorial/CenterContainer/HBoxContainer2/Button" method="download_map"]
