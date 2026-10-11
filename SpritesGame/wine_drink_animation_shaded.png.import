@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://li15jn7x4oin"
 path.s3tc="res://.godot/imported/wine_drink_animation_shaded.png-8e51d72508624441914ebecb7b4bd1de.s3tc.ctex"
+path.etc2="res://.godot/imported/wine_drink_animation_shaded.png-8e51d72508624441914ebecb7b4bd1de.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://SpritesGame/wine_drink_animation_shaded.png"
-dest_files=["res://.godot/imported/wine_drink_animation_shaded.png-8e51d72508624441914ebecb7b4bd1de.s3tc.ctex"]
+dest_files=["res://.godot/imported/wine_drink_animation_shaded.png-8e51d72508624441914ebecb7b4bd1de.s3tc.ctex", "res://.godot/imported/wine_drink_animation_shaded.png-8e51d72508624441914ebecb7b4bd1de.etc2.ctex"]
 
 [params]
 

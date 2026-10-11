@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bed50ujohupyr"
 path.s3tc="res://.godot/imported/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg-23b6b939dc3f2dcaffc0df41ba10e00d.s3tc.ctex"
+path.etc2="res://.godot/imported/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg-23b6b939dc3f2dcaffc0df41ba10e00d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://demoImages/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg"
-dest_files=["res://.godot/imported/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg-23b6b939dc3f2dcaffc0df41ba10e00d.s3tc.ctex"]
+dest_files=["res://.godot/imported/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg-23b6b939dc3f2dcaffc0df41ba10e00d.s3tc.ctex", "res://.godot/imported/Raffaello_-_Spozalizio_-_Web_Gallery_of_Art.jpg-23b6b939dc3f2dcaffc0df41ba10e00d.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cajg3x3x3jidp"
 path.s3tc="res://.godot/imported/wine.png-17934d807ef24ead462c0bb7b4cb0509.s3tc.ctex"
+path.etc2="res://.godot/imported/wine.png-17934d807ef24ead462c0bb7b4cb0509.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://SpritesGame/wine.png"
-dest_files=["res://.godot/imported/wine.png-17934d807ef24ead462c0bb7b4cb0509.s3tc.ctex"]
+dest_files=["res://.godot/imported/wine.png-17934d807ef24ead462c0bb7b4cb0509.s3tc.ctex", "res://.godot/imported/wine.png-17934d807ef24ead462c0bb7b4cb0509.etc2.ctex"]
 
 [params]
 
