@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://y01inoowc83a"]
+
+[ext_resource type="Script" uid="uid://dteg7lnchdgbh" path="res://Handlers/floor_plan_viewer.gd" id="1_6djy7"]
+[ext_resource type="Script" uid="uid://dv0fs8okjj1lp" path="res://Handlers/floor_plan_generator.gd" id="2_ubpkl"]
+
+[node name="FloorPlanViewer" type="Node2D" unique_id=1934639387]
+script = ExtResource("1_6djy7")
+
+[node name="FloorPlanGenerator" type="Node" parent="." unique_id=875597335]
+script = ExtResource("2_ubpkl")
