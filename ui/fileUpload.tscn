@@ -1,20 +1,88 @@
 [gd_scene format=3 uid="uid://bh5roufdwkthd"]
 
 [ext_resource type="Script" uid="uid://bky2lvk6th4hf" path="res://ui/file_upload.gd" id="1_pbrm2"]
+[ext_resource type="Texture2D" uid="uid://cf8ct6nvirj87" path="res://SpritesGame/Frutiger Areo Window Gradient.png" id="2_wnu4c"]
+[ext_resource type="Texture2D" uid="uid://g741d7agdxg4" path="res://SpritesGame/Gallareo logo but it looks horrible because I've been up for 21 hours.png" id="3_jl8xe"]
+[ext_resource type="Script" uid="uid://bm8mlkqtx488e" path="res://ui/close_game.gd" id="4_jrhxb"]
 
 [node name="FileUpload" type="Node2D" unique_id=1049936596]
 
 [node name="FileUploadManager" type="Node" parent="." unique_id=1337539214]
 script = ExtResource("1_pbrm2")
 
-[node name="File Upload" type="Button" parent="." unique_id=1035539304]
-offset_right = 255.0
-offset_bottom = 50.0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=997440791]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1014578617]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_wnu4c")
+patch_margin_left = 96
+patch_margin_top = 96
+patch_margin_right = 96
+patch_margin_bottom = 96
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=381356366]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=1755734291]
+layout_mode = 2
+
+[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=884320469]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1617935520]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=84673985]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1937199013]
+layout_mode = 2
+texture = ExtResource("3_jl8xe")
+
+[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1394446100]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Spacer3" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1222197823]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=8105886]
+layout_mode = 2
+
+[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=729150846]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="File Upload" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1035539304]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
 text = "Upload Images"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=380942016]
-offset_top = 65.0
-offset_right = 40.0
-offset_bottom = 105.0
+[node name="Camera2D" type="Camera2D" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/File Upload" unique_id=1933213149]
+position = Vector2(100, -32)
 
-[connection signal="pressed" from="File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
+[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1324416602]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1555297215]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=813003306]
+modulate = Color(1, 1, 1, 0)
+offset_left = 176.0
+offset_top = 1.0
+offset_right = 256.0
+offset_bottom = 32.0
+text = "Close"
+script = ExtResource("4_jrhxb")
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

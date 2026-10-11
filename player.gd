@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var head: Node3D = $Head
 @onready var wine: Node3D = $Head/Wine
 @onready var wine_drink: Node3D = $Head/wineDrink
+@onready var wine_drink_sprite = $Head/wineDrink/Sprite3D
 @onready var drink_audio: AudioStreamPlayer = $Head/DrinkAudio
 
 @export var drinking_sounds: Array[AudioStream]
@@ -33,7 +34,8 @@ func drink_wine() -> void:
 	tween.parallel().tween_property(wine_drink, "position", drink_start + Vector3(0, 0.5, 0), 0.3)
 
 	#drinking pose.
-	tween.tween_interval(1.0)
+	tween.tween_interval(0.3)
+	tween.parallel().tween_property(wine_drink_sprite, "frame", 2, 0.3)
 
 	#return both to their starting positions.
 	tween.tween_property(wine, "position", wine_start, 0.3)
@@ -41,6 +43,7 @@ func drink_wine() -> void:
 
 	tween.finished.connect(func():
 		drinking = false
+		wine_drink_sprite.frame = 0
 	)
 
 func play_drink_sound() -> void:
@@ -60,7 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#if not is_on_floor():
 		#velocity.y -= gravity * delta
 

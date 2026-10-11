@@ -2,10 +2,39 @@
 
 [ext_resource type="Script" uid="uid://5aspaym5dnfw" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="AudioStream" uid="uid://bh415dnxrfttt" path="res://Sounds/568043__benkenart__coffee-slurp-5.wav" id="2_hqtel"]
-[ext_resource type="Texture2D" uid="uid://cajg3x3x3jidp" path="res://wine.png" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://bthdwu2w811du" path="res://wine-drink.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cajg3x3x3jidp" path="res://SpritesGame/wine.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://li15jn7x4oin" path="res://SpritesGame/wine_drink_animation_shaded.png" id="4_hqtel"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ptxhn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("4_hqtel")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("4_hqtel")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("4_hqtel")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n12ou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody3D" unique_id=160723234]
 script = ExtResource("1_4flbx")
@@ -15,6 +44,7 @@ drinking_sounds = Array[AudioStream]([ExtResource("2_hqtel")])
 shape = SubResource("CapsuleShape3D_ptxhn")
 
 [node name="Head" type="Node3D" parent="." unique_id=863839997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1731971233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54699737, 0)
@@ -29,9 +59,10 @@ texture = ExtResource("2_onrkg")
 [node name="wineDrink" type="Node3D" parent="Head" unique_id=386464694]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.50101244, -0.350586)
 
-[node name="Sprite3D" type="Sprite3D" parent="Head/wineDrink" unique_id=10944434]
+[node name="Sprite3D" type="AnimatedSprite3D" parent="Head/wineDrink" unique_id=1831787512]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8772364, 0)
-texture = ExtResource("3_i3pqv")
+sprite_frames = SubResource("SpriteFrames_n12ou")
+frame_progress = 0.65195966
 
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=995509657]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.55193937, 0)
