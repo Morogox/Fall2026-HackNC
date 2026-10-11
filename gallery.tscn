@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://jfumkbdmrlin" path="res://Props/ColumnPrefab.tscn" id="15_xwjxw"]
 [ext_resource type="PackedScene" uid="uid://7wmoxg88ejj" path="res://Props/WineTable.tscn" id="16_ngm4w"]
 [ext_resource type="Script" uid="uid://dt0t1jn2wxixg" path="res://music.gd" id="17_ngm4w"]
+[ext_resource type="PackedScene" uid="uid://cms3y1ko722x" path="res://pause_menu.tscn" id="18_reov4"]
 
 [sub_resource type="Sky" id="Sky_tw5dh"]
 sky_material = ExtResource("3_tw5dh")
@@ -74,3 +75,5 @@ prop_scenes = Array[PackedScene]([ExtResource("13_4s08b"), ExtResource("14_4rdsk
 stream = ExtResource("15_0gqrd")
 autoplay = true
 script = ExtResource("17_ngm4w")
+
+[node name="pause_menu" parent="." unique_id=931508829 instance=ExtResource("18_reov4")]

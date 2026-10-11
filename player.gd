@@ -81,8 +81,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			head.rotate_x(-event.relative.y * mouse_sensitivity)
 		head.rotation.x = clamp(head.rotation.x, -PI / 2, PI / 2)
 
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#if event.is_action_pressed("ui_cancel"):
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(_delta: float) -> void:
 	#if not is_on_floor():
