@@ -5,17 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://g741d7agdxg4" path="res://SpritesGame/Gallareo logo but it looks horrible because I've been up for 21 hours.png" id="3_jl8xe"]
 [ext_resource type="Script" uid="uid://cyb0he50o58yj" path="res://ui/prop_ratio_slider.gd" id="4_j6u1y"]
 [ext_resource type="Script" uid="uid://bm8mlkqtx488e" path="res://ui/close_game.gd" id="4_jrhxb"]
+[ext_resource type="Texture2D" uid="uid://u7kksjsx65wx" path="res://SpritesGame/Frutiger Areo Background Gradient.png" id="5_qqo6r"]
+[ext_resource type="Script" uid="uid://cysrm5vmewdf5" path="res://ui/close_tutorial.gd" id="6_nh3qj"]
+[ext_resource type="Script" uid="uid://6vrndk6nxyk2" path="res://ui/close_credits.gd" id="7_831ql"]
 
 [node name="FileUpload" type="Node2D" unique_id=1049936596]
 
 [node name="FileUploadManager" type="Node" parent="." unique_id=1337539214]
 script = ExtResource("1_pbrm2")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=997440791]
+[node name="Gallareo" type="MarginContainer" parent="." unique_id=997440791]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1014578617]
+[node name="NinePatchRect" type="NinePatchRect" parent="Gallareo" unique_id=1014578617]
 layout_mode = 2
 offset_transform_enabled = true
 texture = ExtResource("2_wnu4c")
@@ -24,43 +27,43 @@ patch_margin_top = 96
 patch_margin_right = 96
 patch_margin_bottom = 96
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=381356366]
+[node name="CenterContainer" type="CenterContainer" parent="Gallareo" unique_id=381356366]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=1755734291]
+[node name="VBoxContainer" type="VBoxContainer" parent="Gallareo/CenterContainer" unique_id=1755734291]
 layout_mode = 2
 
-[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=884320469]
+[node name="Spacer" type="Label" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=884320469]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1617935520]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=1617935520]
 layout_mode = 2
 
-[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=84673985]
+[node name="Spacer2" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=84673985]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1937199013]
+[node name="TextureRect" type="TextureRect" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1937199013]
 layout_mode = 2
 texture = ExtResource("3_jl8xe")
 
-[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1394446100]
+[node name="Spacer" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1394446100]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="Spacer3" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1222197823]
+[node name="Spacer3" type="Label" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=1222197823]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=799603565]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=799603565]
 layout_mode = 2
 
-[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=965164383]
+[node name="Spacer2" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=965164383]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1860300236]
+[node name="HSlider" type="HSlider" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1860300236]
 custom_minimum_size = Vector2(200, 20)
 custom_maximum_size = Vector2(200, -1)
 layout_mode = 2
@@ -71,7 +74,7 @@ allow_greater = true
 tick_count = 5
 script = ExtResource("4_j6u1y")
 
-[node name="Value" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" unique_id=2093528957]
+[node name="Value" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" unique_id=2093528957]
 modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
@@ -81,34 +84,38 @@ offset_bottom = -4.0
 text = "Props per Image: 1.2"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1505346412]
+[node name="Spacer" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3" unique_id=1505346412]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=8105886]
+[node name="HBoxContainer" type="HBoxContainer" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=8105886]
 layout_mode = 2
 
-[node name="Spacer" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=729150846]
+[node name="Spacer" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer" unique_id=729150846]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="File Upload" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1035539304]
+[node name="File Upload" type="Button" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1035539304]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 text = "Upload Images"
 
-[node name="Camera2D" type="Camera2D" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/File Upload" unique_id=1933213149]
+[node name="Camera2D" type="Camera2D" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer/File Upload" unique_id=1933213149]
 position = Vector2(100, -32)
 
-[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1324416602]
+[node name="Sprite2D" type="Sprite2D" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer/File Upload/Camera2D" unique_id=1705511197]
+z_index = -1
+texture = ExtResource("5_qqo6r")
+
+[node name="Spacer2" type="Label" parent="Gallareo/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1324416602]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="Spacer2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1555297215]
+[node name="Spacer2" type="Label" parent="Gallareo/CenterContainer/VBoxContainer" unique_id=1555297215]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="." unique_id=813003306]
+[node name="Close" type="Button" parent="." unique_id=813003306]
 modulate = Color(1, 1, 1, 0)
 offset_left = 176.0
 offset_top = 1.0
@@ -117,6 +124,112 @@ offset_bottom = 32.0
 text = "Close"
 script = ExtResource("4_jrhxb")
 
-[connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" to="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" method="_on_value_changed"]
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="Tutorial" type="MarginContainer" parent="." unique_id=516288019]
+offset_left = -28.0
+offset_top = 246.0
+offset_right = 302.0
+offset_bottom = 438.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Tutorial" unique_id=620535763]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_wnu4c")
+patch_margin_left = 96
+patch_margin_top = 96
+patch_margin_right = 96
+patch_margin_bottom = 96
+
+[node name="CenterContainer" type="CenterContainer" parent="Tutorial" unique_id=1928724316]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Tutorial/CenterContainer" unique_id=236657459]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="Tutorial/CenterContainer/HBoxContainer2" unique_id=337867854]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Tutorial Text" type="Label" parent="Tutorial/CenterContainer/HBoxContainer2" unique_id=825343784]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "How this works:
+
+Press \"Upload Images\" and select
+many images to upload"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Tutorial/CenterContainer/HBoxContainer2" unique_id=545634934]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="CloseTutorial" type="Button" parent="." unique_id=1150712275]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 31)
+offset_left = 207.0
+offset_top = 247.0
+offset_right = 287.0
+offset_bottom = 278.0
+text = "Close"
+script = ExtResource("6_nh3qj")
+
+[node name="Credits" type="MarginContainer" parent="." unique_id=379015737]
+offset_left = 354.0
+offset_top = -148.0
+offset_right = 684.0
+offset_bottom = 44.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Credits" unique_id=2007814171]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_wnu4c")
+patch_margin_left = 96
+patch_margin_top = 96
+patch_margin_right = 96
+patch_margin_bottom = 96
+
+[node name="CenterContainer" type="CenterContainer" parent="Credits" unique_id=1280193527]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/CenterContainer" unique_id=1243600379]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="Credits/CenterContainer/VBoxContainer" unique_id=1454936588]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Credits/CenterContainer/VBoxContainer" unique_id=1608860800]
+layout_mode = 2
+
+[node name="Spacer2" type="Label" parent="Credits/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=321477288]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Credits" type="Label" parent="Credits/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1397056461]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+text = "Made by:
+
+Middleton
+Mrg.Exe
+Boxbing"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Credits/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1401891564]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="CloseCredits" type="Button" parent="." unique_id=1535554908]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 31)
+offset_left = 589.0
+offset_top = -147.0
+offset_right = 669.0
+offset_bottom = -116.0
+text = "Close"
+script = ExtResource("7_831ql")
+
+[connection signal="value_changed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" to="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
+[connection signal="pressed" from="Close" to="Close" method="_on_pressed"]
+[connection signal="pressed" from="CloseTutorial" to="CloseTutorial" method="_on_pressed"]
+[connection signal="pressed" from="CloseCredits" to="CloseCredits" method="_on_pressed"]
