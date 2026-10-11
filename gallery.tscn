@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://b6w0qdva8jfkv" path="res://frames/SquarePrefab.tscn" id="9_op3a4"]
 [ext_resource type="PackedScene" uid="uid://dbk6r3q2y37qr" path="res://frames/PortraitPrefab.tscn" id="9_p1a2d"]
 [ext_resource type="PackedScene" uid="uid://b3uxytshonunr" path="res://frames/LandscapePrefab.tscn" id="11_tw5dh"]
+[ext_resource type="PackedScene" uid="uid://brpnr5ifk7byu" path="res://Props/vasePrefab.tscn" id="13_4s08b"]
+[ext_resource type="PackedScene" uid="uid://bugvyij3kjjei" path="res://Props/planternPrefab.tscn" id="14_4rdsk"]
 
 [sub_resource type="Sky" id="Sky_tw5dh"]
 sky_material = ExtResource("3_tw5dh")
@@ -64,3 +66,4 @@ doorway_wall_scene = ExtResource("7_bvpv7")
 script = ExtResource("8_op3a4")
 gallery_builder = NodePath("../GalleryBuilder")
 painting_scenes = Array[PackedScene]([ExtResource("9_op3a4"), ExtResource("9_p1a2d"), ExtResource("11_tw5dh")])
+prop_scenes = Array[PackedScene]([ExtResource("13_4s08b"), ExtResource("14_4rdsk")])

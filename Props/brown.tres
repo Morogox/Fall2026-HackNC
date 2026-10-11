@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bs1xbtcff5xk2"]
+
+[ext_resource type="Shader" uid="uid://ddc5pk1ouaf1q" path="res://Props/softDiffuse.gdshader" id="1_fkfe4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fkfe4")
+shader_parameter/shadow_color = Color(0.12, 0.08, 0.25, 1)
+shader_parameter/light_color = Color(0.5659686, 0.19541702, 0.1957174, 1)
+shader_parameter/channel_mask = Vector3(1, 0, 0)
+shader_parameter/softness = 0.4590000218025
+shader_parameter/falloff = 2.14600009867512
+shader_parameter/intensity = 1.0
