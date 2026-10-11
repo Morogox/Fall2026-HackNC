@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://7vp6gy6aatai"]
 
-[ext_resource type="Script" uid="uid://cw714fehjufpv" path="res://gallery.gd" id="1_d3htb"]
 [ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
 [ext_resource type="Material" uid="uid://cw3roorvmhjto" path="res://shadersAndMaterials/skyMat.tres" id="3_tw5dh"]
 [ext_resource type="Script" uid="uid://cffgu1m4k17a6" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
@@ -17,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://cupq1twaobsno" path="res://Sounds/Gallaresso Nova - In Game.ogg" id="15_0gqrd"]
 [ext_resource type="PackedScene" uid="uid://jfumkbdmrlin" path="res://Props/ColumnPrefab.tscn" id="15_xwjxw"]
 [ext_resource type="PackedScene" uid="uid://7wmoxg88ejj" path="res://Props/WineTable.tscn" id="16_ngm4w"]
+[ext_resource type="Script" uid="uid://dt0t1jn2wxixg" path="res://music.gd" id="17_ngm4w"]
 
 [sub_resource type="Sky" id="Sky_tw5dh"]
 sky_material = ExtResource("3_tw5dh")
@@ -47,7 +47,6 @@ adjustment_contrast = 1.05
 adjustment_saturation = 1.05
 
 [node name="Gallery" type="Node3D" unique_id=639647967]
-script = ExtResource("1_d3htb")
 
 [node name="Player" parent="." unique_id=160723234 instance=ExtResource("2_31do6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9287479, 0)
@@ -74,3 +73,4 @@ prop_scenes = Array[PackedScene]([ExtResource("13_4s08b"), ExtResource("14_4rdsk
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=103939364]
 stream = ExtResource("15_0gqrd")
 autoplay = true
+script = ExtResource("17_ngm4w")

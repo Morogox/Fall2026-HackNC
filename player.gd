@@ -15,6 +15,10 @@ extends CharacterBody3D
 var gravity: float = 9.8
 
 var drinking := false
+
+var drinks := 0
+@onready var cam = $Head/Camera3D
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -29,6 +33,15 @@ func drink_wine() -> void:
 	var tween = create_tween()
 	var wine_start := wine.position
 	var drink_start := wine_drink.position
+	
+	var fun = randi_range(-1,1)
+	if fun == -1:
+		wine_start.x = -0.3
+	elif fun == 1:
+		wine_start.x = 0.3
+	else:
+		wine_start.x = 0
+	
 	#lower wine and raise wineDrink
 	tween.tween_property(wine, "position", wine_start + Vector3(0, -0.5, 0), 0.3)
 	tween.parallel().tween_property(wine_drink, "position", drink_start + Vector3(0, 0.5, 0), 0.3)
@@ -44,6 +57,7 @@ func drink_wine() -> void:
 
 	tween.finished.connect(func():
 		drinking = false
+		drinks += 1
 		wine_drink_sprite.frame = 0
 	)
 
@@ -59,8 +73,12 @@ func play_drink_sound() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		head.rotate_x(-event.relative.y * mouse_sensitivity)
+		if drinks > 5:
+			rotate_y(-event.relative.x * (mouse_sensitivity + (0.001 * drinks)))
+			head.rotate_x(-event.relative.y * (mouse_sensitivity + (0.001 * drinks)))
+		else:
+			rotate_y(-event.relative.x * mouse_sensitivity)
+			head.rotate_x(-event.relative.y * mouse_sensitivity)
 		head.rotation.x = clamp(head.rotation.x, -PI / 2, PI / 2)
 
 	if event.is_action_pressed("ui_cancel"):
