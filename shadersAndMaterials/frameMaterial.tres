@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://diw8eyinarhqu"]
+
+[ext_resource type="Shader" uid="uid://2tf2pkc8623o" path="res://shadersAndMaterials/frameShader.gdshader" id="1_7s3jp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7s3jp")
+shader_parameter/albedo_tint = Color(1, 1, 1, 1)
+shader_parameter/roughness = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/threshold = 0.5

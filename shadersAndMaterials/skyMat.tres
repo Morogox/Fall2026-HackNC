@@ -4,5 +4,6 @@
 
 [resource]
 shader = ExtResource("1_sftn3")
-shader_parameter/color1 = Color(9.62615e-07, 0.8444727, 0.824111, 1)
+shader_parameter/color1 = Color(0.0008942693, 0.8759395, 0.8897323, 1)
 shader_parameter/color2 = Color(0.96315867, 0.9871636, 0.99999994, 1)
+shader_parameter/color3 = Color(0.08678853, 0.28147992, 0.86496526, 1)

@@ -3,11 +3,12 @@ shader_type sky;
 
 uniform vec4 color1 : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 uniform vec4 color2 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 color3 : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 
-vec3 lerpColor(vec4 colorA, vec4 colorB, float value) {
+vec3 lerpColor(vec3 colorA, vec3 colorB, float value) {
     float clampedValue = clamp(value, 0.0, 1.0);
     
-    return mix(colorA.rgb, colorB.rgb, clampedValue);
+    return mix(colorA, colorB, clampedValue);
 }
 
 
@@ -58,9 +59,13 @@ void sky() {
     
     vec2 rotated_uv;
     rotated_uv.x = atan(rotated_dir.x, rotated_dir.z) / (PI * 2.0) + 0.5;
-    rotated_uv.y = acos(rotated_dir.y) / PI;
+    rotated_uv.y = acos(rotated_dir.y*0.6) / PI;
     
 	vec4 voronoi = voronoi3d(vec3(rotated_uv*15.0,TIME*0.4));
-	float value = pow(voronoi.r,2);
-    COLOR = lerpColor(color1, color2, value);
+	float value = pow(voronoi.r,4);
+	
+	float distanceValue = pow(distance(rotated_uv, vec2(0.5,0.5))*4.0,1.3);
+	//COLOR = vec3(distanceValue,distanceValue,distanceValue);
+	vec3 newBlue = lerpColor(color3.rgb,color1.rgb, distanceValue);
+    COLOR = lerpColor(newBlue, color2.rgb, value);
 }
