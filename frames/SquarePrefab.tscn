@@ -105,7 +105,7 @@ vertical_alignment = 0
 autowrap_mode = 3
 
 [node name="Date" type="Label3D" parent="Placard" unique_id=1208515078]
-transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609617, 0.08129422, -1.2193658)
+transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609617, -0.0825326, -1.2193658)
 double_sided = false
 texture_filter = 0
 modulate = Color(0, 0, 0, 1)
@@ -117,6 +117,6 @@ vertical_alignment = 0
 autowrap_mode = 3
 
 [node name="Backing" type="CSGBox3D" parent="Placard" unique_id=574420725]
-transform = Transform3D(0.23346573, 0, 0, 0, 0.3659172, 0, 0, 0, 0.91325164, -0.1318543, 0.07625526, -1.7453957)
+transform = Transform3D(0.23346573, 0, 0, 0, 0.3659172, 0, 0, 0, 0.91325164, -0.1318543, 0.006663099, -1.8344467)
 material_override = ExtResource("2_41obm")
-size = Vector3(1, 1, 1.4)
+size = Vector3(1, 1.3803711, 1.5950196)

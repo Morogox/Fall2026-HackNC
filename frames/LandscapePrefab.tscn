@@ -86,7 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.692836, 1.6203753)
 script = ExtResource("2_uqd4y")
 
 [node name="Title" type="Label3D" parent="Placard" unique_id=1149983551]
-transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609318, 0.21627548, -1.1498684)
+transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609318, 0.21627545, -0.9846387)
 double_sided = false
 texture_filter = 0
 modulate = Color(0, 0, 0, 1)
@@ -98,7 +98,7 @@ vertical_alignment = 0
 autowrap_mode = 3
 
 [node name="Date" type="Label3D" parent="Placard" unique_id=1208515078]
-transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609617, 0.08129422, -1.2193658)
+transform = Transform3D(-5.593576e-09, 0, 0.23346563, 0, 0.52938, 0, -0.500567, 0, -3.9919495e-08, -0.0027609617, -0.06357646, -1.0541362)
 double_sided = false
 texture_filter = 0
 modulate = Color(0, 0, 0, 1)
@@ -110,9 +110,9 @@ vertical_alignment = 0
 autowrap_mode = 3
 
 [node name="Backing" type="CSGBox3D" parent="Placard" unique_id=574420725]
-transform = Transform3D(0.23346573, 0, 0, 0, 0.3659172, 0, 0, 0, 0.91325164, -0.1318543, 0.07625532, -1.7314867)
+transform = Transform3D(0.23346573, 0, 0, 0, 0.3659172, 0, 0, 0, 1.1907884, -0.1318543, 0.014256716, -1.7314867)
 material_override = ExtResource("3_uqd4y")
-size = Vector3(1, 1, 1.4)
+size = Vector3(1, 1.3388672, 1.4)
 
 [node name="landscape" type="Node3D" parent="." unique_id=1171616731]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003594637, -0.0033125877)
