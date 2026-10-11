@@ -32,6 +32,7 @@ func drink_wine() -> void:
 	#lower wine and raise wineDrink
 	tween.tween_property(wine, "position", wine_start + Vector3(0, -0.5, 0), 0.3)
 	tween.parallel().tween_property(wine_drink, "position", drink_start + Vector3(0, 0.5, 0), 0.3)
+	play_drink_sound()
 
 	#drinking pose.
 	tween.tween_interval(0.3)
@@ -52,6 +53,8 @@ func play_drink_sound() -> void:
 
 	var sound = drinking_sounds.pick_random()
 	drink_audio.stream = sound
+	var randx = randi_range(-4,4)
+	drink_audio.pitch_scale = 1.4 + (0.1 * randx)
 	drink_audio.play()
 
 func _unhandled_input(event: InputEvent) -> void:

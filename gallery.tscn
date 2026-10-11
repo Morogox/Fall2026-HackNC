@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cw714fehjufpv" path="res://gallery.gd" id="1_d3htb"]
 [ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
 [ext_resource type="Material" uid="uid://cw3roorvmhjto" path="res://shadersAndMaterials/skyMat.tres" id="3_tw5dh"]
-[ext_resource type="Script" uid="uid://dv0fs8okjj1lp" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
+[ext_resource type="Script" uid="uid://cffgu1m4k17a6" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
 [ext_resource type="PackedScene" uid="uid://daamw62get2u2" path="res://Walls/doorway.tscn" id="7_bvpv7"]
 [ext_resource type="Script" uid="uid://ye53lvov4vuj" path="res://Handlers/gallery_builder.gd" id="7_l6m5p"]
 [ext_resource type="Script" uid="uid://ub24wo2vmqvc" path="res://Handlers/paint_hanger.gd" id="8_op3a4"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b3uxytshonunr" path="res://frames/LandscapePrefab.tscn" id="11_tw5dh"]
 [ext_resource type="PackedScene" uid="uid://brpnr5ifk7byu" path="res://Props/vasePrefab.tscn" id="13_4s08b"]
 [ext_resource type="PackedScene" uid="uid://bugvyij3kjjei" path="res://Props/planternPrefab.tscn" id="14_4rdsk"]
+[ext_resource type="AudioStream" uid="uid://cupq1twaobsno" path="res://Sounds/Gallaresso Nova - In Game.ogg" id="15_0gqrd"]
 
 [sub_resource type="Sky" id="Sky_tw5dh"]
 sky_material = ExtResource("3_tw5dh")
@@ -67,3 +68,7 @@ script = ExtResource("8_op3a4")
 gallery_builder = NodePath("../GalleryBuilder")
 painting_scenes = Array[PackedScene]([ExtResource("9_op3a4"), ExtResource("9_p1a2d"), ExtResource("11_tw5dh")])
 prop_scenes = Array[PackedScene]([ExtResource("13_4s08b"), ExtResource("14_4rdsk")])
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=103939364]
+stream = ExtResource("15_0gqrd")
+autoplay = true

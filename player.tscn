@@ -69,4 +69,6 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 target_position = Vector3(0, -2, 0)
 
 [node name="DrinkAudio" type="AudioStreamPlayer" parent="Head" unique_id=25563698]
+stream = ExtResource("2_hqtel")
+volume_db = -6.0
 bus = &"SFX"

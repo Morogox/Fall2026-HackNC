@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cupq1twaobsno"
+path="res://.godot/imported/Gallaresso Nova - In Game.ogg-b5e365cd1c261ddccfe8b3ba3c61f4e8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/Gallaresso Nova - In Game.ogg"
+dest_files=["res://.godot/imported/Gallaresso Nova - In Game.ogg-b5e365cd1c261ddccfe8b3ba3c61f4e8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=5.33
+bpm=0.0
+beat_count=0
+bar_beats=4
