@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://23urg2u42xoa" path="res://pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="Script" uid="uid://csxg5uf2p2lc8" path="res://volume_slider.gd" id="2_nwcfo"]
+[ext_resource type="Script" uid="uid://dblsfjhdyu5n5" path="res://ui/file_download_and_encoder.gd" id="3_05uyy"]
 
 [node name="pause_menu" type="CanvasLayer" unique_id=931508829]
 process_mode = 3
@@ -45,5 +46,7 @@ layout_mode = 2
 [node name="Button" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=50258502]
 layout_mode = 2
 text = "Download File"
+script = ExtResource("3_05uyy")
 
 [connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/volume" to="ColorRect/CenterContainer/VBoxContainer/volume" method="_on_value_changed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/Button" to="ColorRect/CenterContainer/VBoxContainer/Button" method="download_map"]

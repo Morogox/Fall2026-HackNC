@@ -22,7 +22,6 @@ buses/default_bus_layout="uid://bvlwaieodwnes"
 [autoload]
 
 ImageUtils="*uid://cukepkiflfnbn"
-Decoder="*uid://bfgg5j5laa4aw"
 
 [display]
 

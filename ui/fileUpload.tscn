@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://u7kksjsx65wx" path="res://SpritesGame/Frutiger Areo Background Gradient.png" id="5_qqo6r"]
 [ext_resource type="Script" uid="uid://cysrm5vmewdf5" path="res://ui/close_tutorial.gd" id="6_nh3qj"]
 [ext_resource type="Script" uid="uid://6vrndk6nxyk2" path="res://ui/close_credits.gd" id="7_831ql"]
+[ext_resource type="Script" uid="uid://bfgg5j5laa4aw" path="res://decoder.gd" id="9_brhtk"]
 
 [node name="FileUpload" type="Node2D" unique_id=1049936596]
 
@@ -228,8 +229,18 @@ offset_bottom = -116.0
 text = "Close"
 script = ExtResource("7_831ql")
 
+[node name="Button" type="Button" parent="." unique_id=184082712]
+offset_left = -428.99997
+offset_top = -160.99998
+offset_right = -315.99997
+offset_bottom = -129.99998
+scale = Vector2(9.760926, 2.5022168)
+text = "UPLOAD MAP"
+script = ExtResource("9_brhtk")
+
 [connection signal="value_changed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" to="Gallareo/CenterContainer/VBoxContainer/HBoxContainer3/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="Gallareo/CenterContainer/VBoxContainer/HBoxContainer/File Upload" to="FileUploadManager" method="_onUploadButtonPress"]
 [connection signal="pressed" from="Close" to="Close" method="_on_pressed"]
 [connection signal="pressed" from="CloseTutorial" to="CloseTutorial" method="_on_pressed"]
 [connection signal="pressed" from="CloseCredits" to="CloseCredits" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="load_map"]

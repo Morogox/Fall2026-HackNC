@@ -1,18 +1,126 @@
 extends Node
 
-var _open_dialog: FileDialog
-var _js_callback: JavaScriptObject
+const WEB_POLL_TIMEOUT_SEC := 120.0
 
+var _open_dialog: FileDialog
+var _web_polling := false
+
+
+func _ready() -> void:
+	_setup_desktop_dialog()
+
+
+func _setup_desktop_dialog() -> void:
+	if not OS.has_feature("web"):
+		_open_dialog = FileDialog.new()
+		_open_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+		_open_dialog.access = FileDialog.ACCESS_FILESYSTEM
+		_open_dialog.use_native_dialog = true
+		_open_dialog.filters = PackedStringArray(["*.bin ; Map files"])
+		_open_dialog.file_selected.connect(_on_desktop_file_selected)
+		add_child(_open_dialog)
 
 
 func load_map() -> void:
+	print("Load Map Button Pressed")
 	if OS.has_feature("web"):
-		_load_web()
+		_open_web_file_popup()
 	else:
-		_load_desktop()
+		_open_dialog.popup_centered_ratio(0.6)
+
+func _on_desktop_file_selected(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		push_error("File not found: %s" % path)
+		return
+
+	var bytes := FileAccess.get_file_as_bytes(path)
+	if bytes.is_empty():
+		push_error("Could not read %s: %s" % [path, error_string(FileAccess.get_open_error())])
+		return
+
+	_on_map_bytes_ready(bytes)
 
 
 
+func _open_web_file_popup() -> void:
+	if _web_polling:
+		return # a previous load is still pending
+
+	var js_code := """
+	(function() {
+		let input = document.getElementById('godot-map-uploader');
+		if (!input) {
+			input = document.createElement('input');
+			input.id = 'godot-map-uploader';
+			input.type = 'file';
+			input.accept = '.bin';
+			input.style.display = 'none';
+			document.body.appendChild(input);
+		}
+		// Allow re-selecting the same file (onchange won't fire otherwise)
+		input.value = '';
+		window.mapLoadComplete = false;
+		window.mapFileData = null;
+
+		input.onchange = function(e) {
+			let file = e.target.files[0];
+			if (!file) return;
+
+			let reader = new FileReader();
+			reader.onload = function(ev) {
+				window.mapFileData = ev.target.result.split(',')[1];
+				window.mapLoadComplete = true;
+			};
+			reader.onerror = function() {
+				window.mapFileData = null;
+				window.mapLoadComplete = true;
+			};
+			reader.readAsDataURL(file);
+		};
+
+		input.click();
+	})();
+	"""
+	JavaScriptBridge.eval(js_code)
+	_poll_web_upload()
+
+
+func _poll_web_upload() -> void:
+	_web_polling = true
+	var elapsed := 0.0
+
+	while not JavaScriptBridge.eval("window.mapLoadComplete === true"):
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+		if elapsed > WEB_POLL_TIMEOUT_SEC:
+			print("Web map load timed out or was cancelled.")
+			_web_polling = false
+			return
+
+	_web_polling = false
+	_process_web_loaded_file()
+
+
+func _process_web_loaded_file() -> void:
+	var b64 = JavaScriptBridge.eval("window.mapFileData")
+	JavaScriptBridge.eval("window.mapFileData = null; window.mapLoadComplete = false;")
+
+	if typeof(b64) != TYPE_STRING:
+		push_error("No file data received from the browser.")
+		return
+
+	var bytes := Marshalls.base64_to_raw(b64)
+	if bytes.is_empty():
+		push_error("Received empty file from browser")
+		return
+
+	_on_map_bytes_ready(bytes)
+
+
+
+func _on_map_bytes_ready(bytes: PackedByteArray) -> void:
+	if decode_map(bytes):
+		ImageUtils.swap_to_gallery_scene()
 func decode_map(bytes: PackedByteArray) -> bool:
 	var buf := StreamPeerBuffer.new()
 	buf.data_array = bytes
@@ -85,71 +193,3 @@ func decode_map(bytes: PackedByteArray) -> bool:
 	ImageUtils.calc_total_slots(prop_ratio)
 
 	return true
-
-
-
-func _load_desktop() -> void:
-	if _open_dialog == null:
-		_open_dialog = FileDialog.new()
-		_open_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
-		_open_dialog.access = FileDialog.ACCESS_FILESYSTEM
-		_open_dialog.use_native_dialog = true
-		_open_dialog.filters = PackedStringArray(["*.bin ; Map files"])
-		_open_dialog.file_selected.connect(_on_open_path_selected)
-		add_child(_open_dialog)
-
-	_open_dialog.popup_centered_ratio(0.6)
-
-
-func _on_open_path_selected(path: String) -> void:
-	if not FileAccess.file_exists(path):
-		push_error("File not found: %s" % path)
-		return
-	var bytes := FileAccess.get_file_as_bytes(path)
-	if bytes.is_empty():
-		push_error("Could not read %s: %s" % [path, error_string(FileAccess.get_open_error())])
-		return
-	if decode_map(bytes):
-		ImageUtils.swap_to_gallery_scene()
-
-
-
-
-func _load_web() -> void:
-	if _js_callback == null:
-		_js_callback = JavaScriptBridge.create_callback(_on_web_file_loaded)
-
-	var window := JavaScriptBridge.get_interface("window")
-	window.godotMapCallback = _js_callback
-
-	JavaScriptBridge.eval("""
-		(function () {
-			var input = document.createElement('input');
-			input.type = 'file';
-			input.accept = '.bin';
-			input.onchange = function (e) {
-				var file = e.target.files[0];
-				if (!file) return;
-				var reader = new FileReader();
-				reader.onload = function () {
-					var bytes = new Uint8Array(reader.result);
-					var bin = '';
-					for (var i = 0; i < bytes.length; i += 0x8000) {
-						bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
-					}
-					window.godotMapCallback(btoa(bin));
-				};
-				reader.readAsArrayBuffer(file);
-			};
-			input.click();
-		})();
-	""", true)
-
-
-func _on_web_file_loaded(args: Array) -> void:
-	var bytes := Marshalls.base64_to_raw(str(args[0]))
-	if bytes.is_empty():
-		push_error("Received empty file from browser")
-		return
-	if decode_map(bytes):
-		ImageUtils.swap_to_gallery_scene()

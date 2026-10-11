@@ -64,6 +64,8 @@ func _rescale_image(texture: ImageTexture, _frame_type: Frame_Types) -> ImageTex
 	img.generate_mipmaps() 
 	return ImageTexture.create_from_image(img)
 
+func _is_empty()-> bool:
+	return rescaled_textures.size()==0
 
 func _is_valid_index(index: int) -> bool:
 	if index < 0 or index >= total_images:
