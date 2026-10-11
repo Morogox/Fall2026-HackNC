@@ -35,29 +35,45 @@ func _calc_frame(texture: ImageTexture) -> Frame_Types:
 	
 	return Frame_Types.SQUARE
 
-func _rescale_image(texture: ImageTexture, frame_type: Frame_Types) -> ImageTexture:
+func _rescale_image(texture: ImageTexture, _frame_type: Frame_Types) -> ImageTexture:
 	var img: Image = texture.get_image()
-	var width: int = img.get_width()
-	var height: int = img.get_height()
-	var new_width: int = width
-	var new_height: int = height
+	var longest := maxi(img.get_width(), img.get_height())
 
-	match frame_type:
-		Frame_Types.SQUARE:
-			if width > height:
-				new_width = MAX_DIMENSION
-				new_height = int(float(height) * (float(MAX_DIMENSION) / float(width)))
-			else:
-				new_height = MAX_DIMENSION
-				new_width = int(float(width) * (float(MAX_DIMENSION) / float(height)))
-				
-		Frame_Types.PORTRAIT:
-			new_height = MAX_DIMENSION
-			new_width = int(float(width) * (float(MAX_DIMENSION) / float(height)))
-			
-		Frame_Types.LANDSCAPE:
-			new_width = MAX_DIMENSION
-			new_height = int(float(height) * (float(MAX_DIMENSION) / float(width)))
-			
-	img.resize(new_width, new_height, Image.INTERPOLATE_NEAREST)
+	if longest > MAX_DIMENSION:
+		var s := float(MAX_DIMENSION) / float(longest)
+		img.resize(maxi(1, roundi(img.get_width() * s)),maxi(1, roundi(img.get_height() * s)),Image.INTERPOLATE_NEAREST)
+
+	img.generate_mipmaps() 
 	return ImageTexture.create_from_image(img)
+
+
+func _is_valid_index(index: int) -> bool:
+	if index < 0 or index >= total_images:
+		if debug:
+			push_warning("Index %d out of range (total images: %d)" % [index, total_images])
+		return false
+	return true
+
+
+func get_total_images() -> int:
+	return total_images
+
+func get_texture_name(index: int) -> String:
+	if not _is_valid_index(index):
+		return ""
+	return texture_names[index]
+
+func get_texture_unix_time(index: int) -> float:
+	if not _is_valid_index(index):
+		return 0.0
+	return texture_unixTime[index]
+
+func get_texture_frame_type(index: int) -> Frame_Types:
+	if not _is_valid_index(index):
+		return Frame_Types.SQUARE
+	return texture_frame_types[index]
+
+func get_rescaled_texture(index: int) -> ImageTexture:
+	if not _is_valid_index(index):
+		return null
+	return rescaled_textures[index]
