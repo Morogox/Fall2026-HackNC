@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cw714fehjufpv" path="res://gallery.gd" id="1_d3htb"]
 [ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
 [ext_resource type="Script" uid="uid://dv0fs8okjj1lp" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
+[ext_resource type="PackedScene" uid="uid://daamw62get2u2" path="res://Walls/doorway.tscn" id="7_bvpv7"]
 [ext_resource type="Script" uid="uid://ye53lvov4vuj" path="res://Handlers/gallery_builder.gd" id="7_l6m5p"]
 [ext_resource type="PackedScene" uid="uid://b7mqhk67dvicy" path="res://floor.tscn" id="8_p1a2d"]
 [ext_resource type="PackedScene" uid="uid://cw02nap2vnvun" path="res://Walls/wall.tscn" id="9_1hwuq"]
@@ -35,3 +36,4 @@ script = ExtResource("7_l6m5p")
 floor_plan_generator = NodePath("../FloorPlanGenerator")
 floor_scene = ExtResource("8_p1a2d")
 wall_scene = ExtResource("9_1hwuq")
+doorway_wall_scene = ExtResource("7_bvpv7")

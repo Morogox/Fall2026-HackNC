@@ -6,7 +6,7 @@ extends Node
 
 #@onready var camera = $Camera2D
 
-@export var paintings = 100 # number of images
+@export var paintings = 30# number of images
 var available_slots = 0
 
 
@@ -22,7 +22,8 @@ var grid_size := 1
 
 
 func _ready() -> void:
-	generate(100)
+	generate(paintings)
+
 func generate(painting_count: int) -> void:
 	paintings = painting_count
 	grid.clear()
@@ -32,17 +33,20 @@ func generate(painting_count: int) -> void:
 	_generate_starting_grid()
 	direction = randi_range(0, 3)
 
-	match direction:
-		0:
-			cur = Vector2(-2, 0)
-		1:
-			cur = Vector2(2, 0)
-		2:
-			cur = Vector2(0, -2)
-		3:
-			cur = Vector2(0, 2)
-	grid.append(cur)
-	available_slots += 24
+	#match direction:
+		#0:
+			#cur = Vector2(-2, 0)
+		#1:
+			#cur = Vector2(2, 0)
+		#2:
+			#cur = Vector2(0, -2)
+		#3:
+			#cur = Vector2(0, 2)
+	#if available_slots < paintings:
+		#grid.append(cur)
+		#check_walls(cur)
+	direction = randi_range(0, 3)
+	cur = Vector2(0, 0)
 	check_walls(cur)
 
 	var i = 0
@@ -66,10 +70,9 @@ func generate(painting_count: int) -> void:
 		direction = (direction + turn + 4) % 4
 		
 		# if normal
-		if i != 0:
-			if not advance_cur(1):
-				i += 1
-				continue
+		if not advance_cur(1):
+			i += 1
+			continue
 		check_walls(cur)
 		
 		i += 1
@@ -77,8 +80,17 @@ func generate(painting_count: int) -> void:
 	print("Painting slots: ", available_slots)
 
 func _generate_starting_grid() -> void:
-	for x in range(-1, 2):
-		for y in range(-1, 2):
+	var starting_size = 1
+
+	#if paintings > 8:
+		#starting_size = 2
+	#if paintings > 16:
+		#starting_size = 3
+
+	var start := int(floor(starting_size / 2.0))
+
+	for x in range(-start, starting_size - start):
+		for y in range(-start, starting_size - start):
 			grid.append(Vector2(x, y))
 
 func advance_cur(dist: int) -> bool:
