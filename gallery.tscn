@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw714fehjufpv" path="res://gallery.gd" id="1_d3htb"]
 [ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
+[ext_resource type="Material" uid="uid://cw3roorvmhjto" path="res://shadersAndMaterials/skyMat.tres" id="3_tw5dh"]
 [ext_resource type="Script" uid="uid://dv0fs8okjj1lp" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
 [ext_resource type="PackedScene" uid="uid://daamw62get2u2" path="res://Walls/doorway.tscn" id="7_bvpv7"]
 [ext_resource type="Script" uid="uid://ye53lvov4vuj" path="res://Handlers/gallery_builder.gd" id="7_l6m5p"]
@@ -12,16 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://dbk6r3q2y37qr" path="res://frames/PortraitPrefab.tscn" id="9_p1a2d"]
 [ext_resource type="PackedScene" uid="uid://b3uxytshonunr" path="res://frames/LandscapePrefab.tscn" id="11_tw5dh"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pb8yt"]
-sky_top_color = Color(0.32864922, 0.672804, 0.93817616, 1)
-
-[sub_resource type="Sky" id="Sky_4wx7g"]
-sky_material = SubResource("ProceduralSkyMaterial_pb8yt")
+[sub_resource type="Sky" id="Sky_tw5dh"]
+sky_material = ExtResource("3_tw5dh")
 
 [sub_resource type="Environment" id="Environment_ptxhn"]
 background_mode = 2
 background_color = Color(0.32915837, 0.3291584, 0.3291584, 1)
-sky = SubResource("Sky_4wx7g")
+sky = SubResource("Sky_tw5dh")
 
 [node name="Gallery" type="Node3D" unique_id=639647967]
 script = ExtResource("1_d3htb")

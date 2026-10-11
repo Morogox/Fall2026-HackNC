@@ -11,6 +11,9 @@ var texture_unixTime: Array[float] = []
 var texture_frame_types: Array[Frame_Types] = [] 
 var rescaled_textures: Array[ImageTexture] = [] 
 var total_images: int = 0
+var total_props: int = 0
+var prop_ratio: float = 0.6 # extra prop slots per image (0.25 = 1 prop per 4 images)
+var percent_empty: float = 1.0; # percent chance that prop location is left blank (currently 100% until props are implemented)
 var debug: bool = true
 
 # Rescale textures and pass into array
@@ -22,6 +25,8 @@ func _process_textures(textures: Array[ImageTexture]) -> void:
 	for i in range(total_images):
 		texture_frame_types[i] = _calc_frame(textures[i])
 		rescaled_textures[i] = _rescale_image(textures[i], texture_frame_types[i])
+		
+	calc_total_slots(prop_ratio)
 
 func _calc_frame(texture: ImageTexture) -> Frame_Types:
 	var width: float = float(texture.get_width())
@@ -77,3 +82,15 @@ func get_rescaled_texture(index: int) -> ImageTexture:
 	if not _is_valid_index(index):
 		return null
 	return rescaled_textures[index]
+
+func calc_total_slots(percent: float) -> void:
+	total_props = ceili(total_images * percent)
+	
+func get_total_props() -> int:
+	return total_props
+	
+func get_total_slots() -> int:
+	return total_props + total_images
+	
+func get_percent_empty() -> float:
+	return percent_empty

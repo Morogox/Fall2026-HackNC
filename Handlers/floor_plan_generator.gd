@@ -22,7 +22,7 @@ var grid_size := 1
 
 
 func _ready() -> void:
-	paintings = ImageUtils.total_images
+	paintings = ImageUtils.get_total_slots()
 	generate(paintings)
 
 func generate(painting_count: int) -> void:
