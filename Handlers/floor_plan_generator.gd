@@ -50,8 +50,9 @@ func generate(painting_count: int) -> void:
 	cur = Vector2(0, 0)
 	check_walls(cur)
 
-	#var i = 0
+	var i = 0
 	while (available_slots < paintings):
+		print(i)
 		turn = randi_range(-1,1) # left, forward, right
 		
 		# No easy way to turn into itself
@@ -72,11 +73,15 @@ func generate(painting_count: int) -> void:
 		
 		# if normal
 		if not advance_cur(1):
+			print("We did not get advance_cur")
+			print(cur)
+			print(direction)
+			print(turn)
 			#i += 1
 			continue
 		check_walls(cur)
 		
-		#i += 1
+		i += 1
 	print("Cells generated: ", grid.size())
 	print("Painting slots: ", available_slots)
 
@@ -109,10 +114,14 @@ func advance_cur(dist: int) -> bool:
 				next.x -= 1
 
 		if grid.has(next):
-			return false
-
-		cur = next
-		grid.append(cur)
+			step -= 1
+			cur = next
+			#print("We did not get advance_cur")
+			#print("Cur: " + str(cur) + "available_slots: " + str(available_slots) + "slots needed: " + str(paintings))
+			#return false
+		else:
+			cur = next
+			grid.append(cur)
 	return true
 
 

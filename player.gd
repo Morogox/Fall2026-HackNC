@@ -28,7 +28,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not drinking:
 		drink_wine()
 	
+	
 func drink_wine() -> void:
+	#position.y += 100
+	
+	
 	drinking = true
 	var tween = create_tween()
 	var wine_start := wine.position
@@ -92,6 +96,14 @@ func _physics_process(_delta: float) -> void:
 
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y )).normalized()
 
+	if Input.is_action_pressed("run"):
+		speed = 20
+	else:
+		speed = 5
+	
+	#if Input.is_action_just_pressed("crouch"):
+		#position.y -= 10
+	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 
