@@ -44,20 +44,20 @@ drinking_sounds = Array[AudioStream]([ExtResource("2_hqtel")])
 shape = SubResource("CapsuleShape3D_ptxhn")
 
 [node name="Head" type="Node3D" parent="." unique_id=863839997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98666966, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1731971233]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54699737, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.062109828, 0)
 
 [node name="Wine" type="Node3D" parent="Head" unique_id=1433995655]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.29968888, 0.32085735, -0.3880847)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.29968888, -0.1640302, -0.3880847)
 
 [node name="Sprite3D" type="Sprite3D" parent="Head/Wine" unique_id=1209522019]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2448217, 0.18272975, -0.67102396)
 texture = ExtResource("2_onrkg")
 
 [node name="wineDrink" type="Node3D" parent="Head" unique_id=386464694]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.50101244, -0.350586)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.016124964, -0.350586)
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="Head/wineDrink" unique_id=1831787512]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.8772364, 0)

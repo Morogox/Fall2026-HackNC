@@ -12,8 +12,8 @@ var texture_frame_types: Array[Frame_Types] = []
 var rescaled_textures: Array[ImageTexture] = [] 
 var total_images: int = 0
 var total_props: int = 0
-var prop_ratio: float = 0.6 # extra prop slots per image (0.25 = 1 prop per 4 images)
-var percent_empty: float = 0.0; # percent chance that prop location is left blank (currently 100% until props are implemented)
+var prop_ratio: float = 1.2 # extra prop slots per image (0.25 = 1 prop per 4 images)
+var percent_empty: float = 0.5; # percent chance that prop location is left blank (currently 100% until props are implemented)
 var debug: bool = true
 
 # Rescale textures and pass into array
