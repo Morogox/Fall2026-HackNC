@@ -6,7 +6,7 @@ extends Node
 
 #@onready var camera = $Camera2D
 
-@export var paintings = 30# number of images
+@export var paintings = 100# number of images
 var available_slots = 0
 
 

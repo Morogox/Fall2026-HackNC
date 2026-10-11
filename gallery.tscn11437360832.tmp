@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://7vp6gy6aatai"]
+
+[ext_resource type="Script" uid="uid://cw714fehjufpv" path="res://gallery.gd" id="1_d3htb"]
+[ext_resource type="PackedScene" uid="uid://bqw625uf0pwu0" path="res://player.tscn" id="2_31do6"]
+[ext_resource type="PackedScene" uid="uid://cdx7yfuw6ftxq" path="res://frames/portrait.fbx" id="3_31do6"]
+[ext_resource type="PackedScene" uid="uid://s5sxb3vaaojl" path="res://frames/landscape.fbx" id="4_qjuxl"]
+[ext_resource type="Script" uid="uid://dv0fs8okjj1lp" path="res://Handlers/floor_plan_generator.gd" id="6_l6m5p"]
+[ext_resource type="PackedScene" uid="uid://daamw62get2u2" path="res://Walls/doorway.tscn" id="7_bvpv7"]
+[ext_resource type="Script" uid="uid://ye53lvov4vuj" path="res://Handlers/gallery_builder.gd" id="7_l6m5p"]
+[ext_resource type="Script" uid="uid://ub24wo2vmqvc" path="res://Handlers/paint_hanger.gd" id="8_op3a4"]
+[ext_resource type="PackedScene" uid="uid://b7mqhk67dvicy" path="res://floor.tscn" id="8_p1a2d"]
+[ext_resource type="PackedScene" uid="uid://cw02nap2vnvun" path="res://Walls/wall.tscn" id="9_1hwuq"]
+[ext_resource type="PackedScene" uid="uid://bkht36iq3ry4n" path="res://frames/square.fbx" id="11_tw5dh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pb8yt"]
+sky_top_color = Color(0.32864922, 0.672804, 0.93817616, 1)
+
+[sub_resource type="Sky" id="Sky_4wx7g"]
+sky_material = SubResource("ProceduralSkyMaterial_pb8yt")
+
+[sub_resource type="Environment" id="Environment_ptxhn"]
+background_mode = 2
+background_color = Color(0.32915837, 0.3291584, 0.3291584, 1)
+sky = SubResource("Sky_4wx7g")
+
+[node name="Gallery" type="Node3D" unique_id=639647967]
+script = ExtResource("1_d3htb")
+
+[node name="Player" parent="." unique_id=160723234 instance=ExtResource("2_31do6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9287479, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=173928408]
+environment = SubResource("Environment_ptxhn")
+
+[node name="FloorPlanGenerator" type="Node" parent="." unique_id=488214570]
+script = ExtResource("6_l6m5p")
+
+[node name="GalleryBuilder" type="Node3D" parent="." unique_id=1847797899 node_paths=PackedStringArray("floor_plan_generator")]
+script = ExtResource("7_l6m5p")
+floor_plan_generator = NodePath(".")
+floor_scene = ExtResource("8_p1a2d")
+wall_scene = ExtResource("9_1hwuq")
+doorway_wall_scene = ExtResource("7_bvpv7")
+
+[node name="PaintHanger" type="Node3D" parent="." unique_id=1572805913]
+script = ExtResource("8_op3a4")
+painting_scenes = Array[PackedScene]([ExtResource("4_qjuxl"), ExtResource("3_31do6"), ExtResource("11_tw5dh")])

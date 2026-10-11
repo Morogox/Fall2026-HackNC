@@ -9,5 +9,3 @@ transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, 4.2, 0, 0)
 
 [node name="Wall2" parent="." unique_id=1925794284 instance=ExtResource("1_14gom")]
 transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0, 0)
-
-[node name="Connection" type="Marker3D" parent="." unique_id=1786930438]

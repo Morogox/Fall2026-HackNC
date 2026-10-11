@@ -26,7 +26,6 @@ func build_floor() -> void:
 	for cell in floor_plan_generator.grid:
 		var tile = floor_scene.instantiate() as Node3D
 		add_child(tile)
-		"res://Walls/doorway.tscn"
 		
 		tile.position = Vector3(cell.x * cell_size, 0.0, cell.y * cell_size)
 
@@ -56,8 +55,15 @@ func build_walls() -> void:
 			
 			wall.position = Vector3(cell.x * cell_size, 0.0, cell.y * cell_size) + offset
 			
-			if direction.x != 0:
-				wall.rotation.y = PI / 2.0
+			match direction:
+				Vector2i(0, -1): # North
+					wall.rotation.y = 0.0
+				Vector2i(1, 0): # East
+					wall.rotation.y = -PI / 2.0
+				Vector2i(0, 1): # South
+					wall.rotation.y = PI
+				Vector2i(-1, 0): # West
+					wall.rotation.y = PI / 2.0
 
 
 func generate_rooms() -> void:
