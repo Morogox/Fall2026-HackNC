@@ -20,6 +20,7 @@ var cur = Vector2(0,0)
 var grid = Array()
 
 func _ready() -> void:
+	ImageUtils.reset_seed()
 	#var main = large.instantiate()
 	#add_child(main)
 	
@@ -29,14 +30,14 @@ func _ready() -> void:
 			var room = square.instantiate()
 			add_child(room)
 			room.position = Vector2(x,y)
-	direction = randi_range(0,4)
+	direction = ImageUtils.rng.randi_range(0,3)
 	advance_cur(2)
 	
 	var i = 0
 	
 	available_slots += 24
 	while (available_slots < paintings):
-		turn = randi_range(-1,1) # left, forward, right
+		turn = ImageUtils.rng.randi_range(-1,1) # left, forward, right
 		var room = square.instantiate()
 		add_child(room)
 		

@@ -16,6 +16,10 @@ var prop_ratio: float = 1.2 # extra prop slots per image (0.25 = 1 prop per 4 im
 var percent_empty: float = 0.5; # percent chance that prop location is left blank (currently 100% until props are implemented)
 var debug: bool = true
 
+
+var rng := RandomNumberGenerator.new()
+var seed: int = 12345;
+
 #encoder decoder consensus
 const MAGIC := "MAP1"
 const VERSION := 1
@@ -27,8 +31,12 @@ func swap_to_gallery_scene() -> void:
 	if not ResourceLoader.exists(GALLERY_SCENE_PATH):
 		push_error("Gallery scene not found: " + GALLERY_SCENE_PATH)
 		return
+	rng.seed = seed;
 	get_tree().change_scene_to_file.call_deferred(GALLERY_SCENE_PATH)
 
+func reset_seed() -> void:
+	rng.seed = seed;
+	
 # Rescale textures and pass into array
 func _process_textures(textures: Array[ImageTexture]) -> void:
 	total_images = textures.size()

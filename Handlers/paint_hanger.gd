@@ -13,6 +13,7 @@ var _placed_props: Array = []  # [{scene, position}]
 
 
 func _ready() -> void:
+	ImageUtils.reset_seed()
 	_prop_bag = ShuffleBag.new(prop_scenes)
 	hang_paintings()
 	
@@ -32,14 +33,18 @@ func hang_paintings() -> void:
 
 	var image_count: int = ImageUtils.get_total_images()
 	if markers.size() < image_count:
-		push_warning("Only %d slots for %d images. %d images won't be shown. The builder should create %d slots (ImageUtils.get_total_slots())."
-			% [markers.size(), image_count, image_count - markers.size(), ImageUtils.get_total_slots()])
+		push_warning("Only %d slots for %d images. %d images won't be shown."
+			% [markers.size(), image_count, image_count - markers.size()])
 
 	var plan: Array = _build_plan(markers.size(), image_count)
 
-	# Shuffled image order so frame types and neighbours are mixed up
 	var image_order: Array = range(mini(image_count, markers.size()))
-	image_order.shuffle()
+	for i in range(image_order.size() - 1, 0, -1):
+		var j := ImageUtils.rng.randi_range(0, i)
+		var temp = image_order[i]
+		image_order[i] = image_order[j]
+		image_order[j] = temp
+		
 	var next_image := 0
 
 	for i in range(markers.size()):
@@ -68,19 +73,17 @@ func _build_plan(total: int, image_count: int) -> Array:
 	if not prop_scenes.is_empty():
 		prop_target = roundi(special * (1.0 - ImageUtils.get_percent_empty()))
 
-	# Interleave props and blanks evenly (Bresenham-style) so neither clumps
 	var kinds: Array = []
 	for j in range(special):
 		var before := int(j * prop_target / float(special))
 		var after := int((j + 1) * prop_target / float(special))
 		kinds.append(Slot.PROP if after > before else Slot.BLANK)
 
-	# Split the slot list into `special` equal zones and put one non-painting
-	# in a random spot within each. Zones don't overlap, so no collisions.
+	
 	for j in range(special):
 		var lo := int(j * total / float(special))
 		var hi := int((j + 1) * total / float(special)) - 1
-		plan[randi_range(lo, maxi(lo, hi))] = kinds[j]
+		plan[ImageUtils.rng.randi_range(lo, maxi(lo, hi))] = kinds[j]
 
 	return plan
 

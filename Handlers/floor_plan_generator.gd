@@ -22,6 +22,7 @@ var grid_size := 1
 
 
 func _ready() -> void:
+	ImageUtils.reset_seed()
 	paintings = ImageUtils.get_total_slots()
 	generate(paintings)
 
@@ -32,7 +33,7 @@ func generate(painting_count: int) -> void:
 	available_slots = 0
 
 	_generate_starting_grid()
-	direction = randi_range(0, 3)
+	direction = ImageUtils.rng.randi_range(0, 3)
 
 	#match direction:
 		#0:
@@ -46,14 +47,14 @@ func generate(painting_count: int) -> void:
 	#if available_slots < paintings:
 		#grid.append(cur)
 		#check_walls(cur)
-	direction = randi_range(0, 3)
+	direction = ImageUtils.rng.randi_range(0, 3)
 	cur = Vector2(0, 0)
 	check_walls(cur)
 
 	var i = 0
 	while (available_slots < paintings):
 		print(i)
-		turn = randi_range(-1,1) # left, forward, right
+		turn = ImageUtils.rng.randi_range(-1,1) # left, forward, right
 		
 		# No easy way to turn into itself
 		if turn != 0:

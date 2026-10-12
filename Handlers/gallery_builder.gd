@@ -12,6 +12,7 @@ var doorway_boundaries: Array[Dictionary] = []
 var painting_slots: Array[Marker3D] = []
 
 func _ready() -> void:
+	ImageUtils.reset_seed()
 	painting_slots.clear()
 	generate_rooms()
 	build_floor()
@@ -74,9 +75,10 @@ func generate_rooms() -> void:
 		var room: Array = []
 		var total_cells = floor_plan_generator.grid.size()
 		var max_room_size = clampi(int(total_cells / 3), 3, 7)
-		var target_size = randi_range(1, max_room_size)
+		var target_size = ImageUtils.rng.randi_range(1, max_room_size)
 
-		var start = unassigned.pick_random()
+		var start_index = ImageUtils.rng.randi_range(0, unassigned.size() - 1)
+		var start = unassigned[start_index]
 		unassigned.erase(start)
 		room.append(start)
 
@@ -93,7 +95,8 @@ func generate_rooms() -> void:
 			if candidates.is_empty():
 				break
 				
-			var next_cell = candidates.pick_random()
+			var next_index = ImageUtils.rng.randi_range(0, candidates.size() - 1)
+			var next_cell = candidates[next_index]
 			unassigned.erase(next_cell)
 			room.append(next_cell)
 			
@@ -140,7 +143,12 @@ func choose_doorways() -> void:
 		room_connections.append(i)
 
 	var shuffled_boundaries = interior_boundaries.duplicate()
-	shuffled_boundaries.shuffle()
+	
+	for i in range(shuffled_boundaries.size() - 1, 0, -1):
+		var j := ImageUtils.rng.randi_range(0, i)
+		var temp = shuffled_boundaries[i]
+		shuffled_boundaries[i] = shuffled_boundaries[j]
+		shuffled_boundaries[j] = temp
 
 	for boundary in shuffled_boundaries:
 		var room_a: int = boundary["room_a"]

@@ -6,6 +6,7 @@ extends Node2D
 var grid: Array[Vector2] = []
 
 func _ready() -> void:
+	ImageUtils.reset_seed()
 	generator.generate(100)
 	display_grid(generator.grid)
 	
