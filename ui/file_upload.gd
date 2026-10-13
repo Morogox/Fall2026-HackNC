@@ -226,5 +226,7 @@ func _swap_to_gallery_scene() -> void:
 	if not ResourceLoader.exists(GALLERY_SCENE_PATH):
 		push_error("Gallery scene not found: " + GALLERY_SCENE_PATH)
 		return
-
+	
+	#random seed if no bin file
+	ImageUtils.seed=randi()
 	get_tree().change_scene_to_file.call_deferred(GALLERY_SCENE_PATH)
