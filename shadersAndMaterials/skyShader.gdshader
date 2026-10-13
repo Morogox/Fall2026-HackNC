@@ -12,7 +12,6 @@ vec3 lerpColor(vec3 colorA, vec3 colorB, float value) {
 }
 
 
-// Fractional part for noise generation
 vec3 hash3(vec3 p) {
     p = vec3(dot(p, vec3(127.1, 311.7, 74.7)),
              dot(p, vec3(269.5, 183.3, 246.1)),

@@ -13,17 +13,16 @@ var rescaled_textures: Array[ImageTexture] = []
 var total_images: int = 0
 var total_props: int = 0
 var prop_ratio: float = 1.2 # extra prop slots per image (0.25 = 1 prop per 4 images)
-var percent_empty: float = 0.5; # percent chance that prop location is left blank (currently 100% until props are implemented)
+var percent_empty: float = 0.5; # percent chance that prop location is left blank
 var debug: bool = true
-
 
 var rng := RandomNumberGenerator.new()
 var seed: int = 12345;
 
-#encoder decoder consensus
+# Encoder/decoder 
 const MAGIC := "MAP1"
-const VERSION := 1
-
+const VERSION := 2 #version 2 supports seed
+const FALLBACK_SEED: int = 12345 # Unchanging fallback seed for older v1 files
 
 const GALLERY_SCENE_PATH := "res://gallery.tscn"
 
@@ -31,11 +30,11 @@ func swap_to_gallery_scene() -> void:
 	if not ResourceLoader.exists(GALLERY_SCENE_PATH):
 		push_error("Gallery scene not found: " + GALLERY_SCENE_PATH)
 		return
-	rng.seed = seed;
+	rng.seed = seed
 	get_tree().change_scene_to_file.call_deferred(GALLERY_SCENE_PATH)
 
 func reset_seed() -> void:
-	rng.seed = seed;
+	rng.seed = seed
 	
 # Rescale textures and pass into array
 func _process_textures(textures: Array[ImageTexture]) -> void:
@@ -67,13 +66,13 @@ func _rescale_image(texture: ImageTexture, _frame_type: Frame_Types) -> ImageTex
 
 	if longest > MAX_DIMENSION:
 		var s := float(MAX_DIMENSION) / float(longest)
-		img.resize(maxi(1, roundi(img.get_width() * s)),maxi(1, roundi(img.get_height() * s)),Image.INTERPOLATE_NEAREST)
+		img.resize(maxi(1, roundi(img.get_width() * s)), maxi(1, roundi(img.get_height() * s)), Image.INTERPOLATE_NEAREST)
 
 	img.generate_mipmaps() 
 	return ImageTexture.create_from_image(img)
 
-func _is_empty()-> bool:
-	return rescaled_textures.size()==0
+func _is_empty() -> bool:
+	return rescaled_textures.size() == 0
 
 func _is_valid_index(index: int) -> bool:
 	if index < 0 or index >= total_images:
@@ -81,7 +80,6 @@ func _is_valid_index(index: int) -> bool:
 			push_warning("Index %d out of range (total images: %d)" % [index, total_images])
 		return false
 	return true
-
 
 func get_total_images() -> int:
 	return total_images

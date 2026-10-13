@@ -1,6 +1,5 @@
 extends Node
 
-
 const DEFAULT_FILENAME := "map.bin"
 
 var _file_dialog: FileDialog
@@ -19,8 +18,6 @@ func download_map() -> void:
 	else:
 		_save_desktop(bytes)
 
-
-
 func encode_map() -> PackedByteArray:
 	var count: int = ImageUtils.total_images
 	if ImageUtils.texture_names.size() != count \
@@ -32,12 +29,13 @@ func encode_map() -> PackedByteArray:
 
 	var buf := StreamPeerBuffer.new()
 
-	# Header
+	# Header (Version 2 includes seed)
 	buf.put_data(ImageUtils.MAGIC.to_ascii_buffer())
 	buf.put_u32(ImageUtils.VERSION)
 	buf.put_u32(count)
 	buf.put_float(ImageUtils.prop_ratio)
 	buf.put_float(ImageUtils.percent_empty)
+	buf.put_64(ImageUtils.seed) # Serialize seed value
 
 	# Per-image records
 	for i in count:
@@ -51,12 +49,8 @@ func encode_map() -> PackedByteArray:
 
 	return buf.data_array
 
-
-
 func _save_web(bytes: PackedByteArray) -> void:
 	JavaScriptBridge.download_buffer(bytes, DEFAULT_FILENAME, "application/octet-stream")
-
-
 
 func _save_desktop(bytes: PackedByteArray) -> void:
 	_pending_bytes = bytes
@@ -64,15 +58,14 @@ func _save_desktop(bytes: PackedByteArray) -> void:
 	if _file_dialog == null:
 		_file_dialog = FileDialog.new()
 		_file_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
-		_file_dialog.access = FileDialog.ACCESS_FILESYSTEM  # real OS paths, not res:// or user://
-		_file_dialog.use_native_dialog = true               # OS-native picker where supported
+		_file_dialog.access = FileDialog.ACCESS_FILESYSTEM  
+		_file_dialog.use_native_dialog = true             
 		_file_dialog.filters = PackedStringArray(["*.bin ; Map files"])
 		_file_dialog.file_selected.connect(_on_save_path_selected)
 		add_child(_file_dialog)
 
 	_file_dialog.current_file = DEFAULT_FILENAME
 	_file_dialog.popup_centered_ratio(0.6)
-
 
 func _on_save_path_selected(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)

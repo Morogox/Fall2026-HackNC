@@ -5,10 +5,8 @@ const WEB_POLL_TIMEOUT_SEC := 120.0
 var _open_dialog: FileDialog
 var _web_polling := false
 
-
 func _ready() -> void:
 	_setup_desktop_dialog()
-
 
 func _setup_desktop_dialog() -> void:
 	if not OS.has_feature("web"):
@@ -19,7 +17,6 @@ func _setup_desktop_dialog() -> void:
 		_open_dialog.filters = PackedStringArray(["*.bin ; Map files"])
 		_open_dialog.file_selected.connect(_on_desktop_file_selected)
 		add_child(_open_dialog)
-
 
 func load_map() -> void:
 	print("Load Map Button Pressed")
@@ -40,11 +37,9 @@ func _on_desktop_file_selected(path: String) -> void:
 
 	_on_map_bytes_ready(bytes)
 
-
-
 func _open_web_file_popup() -> void:
 	if _web_polling:
-		return # a previous load is still pending
+		return 
 
 	var js_code := """
 	(function() {
@@ -57,7 +52,6 @@ func _open_web_file_popup() -> void:
 			input.style.display = 'none';
 			document.body.appendChild(input);
 		}
-		// Allow re-selecting the same file (onchange won't fire otherwise)
 		input.value = '';
 		window.mapLoadComplete = false;
 		window.mapFileData = null;
@@ -84,7 +78,6 @@ func _open_web_file_popup() -> void:
 	JavaScriptBridge.eval(js_code)
 	_poll_web_upload()
 
-
 func _poll_web_upload() -> void:
 	_web_polling = true
 	var elapsed := 0.0
@@ -99,7 +92,6 @@ func _poll_web_upload() -> void:
 
 	_web_polling = false
 	_process_web_loaded_file()
-
 
 func _process_web_loaded_file() -> void:
 	var b64 = JavaScriptBridge.eval("window.mapFileData")
@@ -116,11 +108,10 @@ func _process_web_loaded_file() -> void:
 
 	_on_map_bytes_ready(bytes)
 
-
-
 func _on_map_bytes_ready(bytes: PackedByteArray) -> void:
 	if decode_map(bytes):
 		ImageUtils.swap_to_gallery_scene()
+
 func decode_map(bytes: PackedByteArray) -> bool:
 	var buf := StreamPeerBuffer.new()
 	buf.data_array = bytes
@@ -131,13 +122,22 @@ func decode_map(bytes: PackedByteArray) -> bool:
 		return false
 
 	var version := buf.get_u32()
-	if version != ImageUtils.VERSION:
-		push_error("Unsupported map version %d (expected %d)" % [version, ImageUtils.VERSION])
+	if version > ImageUtils.VERSION or version < 1:
+		push_error("Unsupported map version %d (expected up to %d)" % [version, ImageUtils.VERSION])
 		return false
 
 	var count := buf.get_u32()
 	var prop_ratio := buf.get_float()
 	var percent_empty := buf.get_float()
+
+	# Handle seed logic with backwards compatibility for version 1 files
+	var map_seed: int = ImageUtils.FALLBACK_SEED
+	if version >= 2:
+		if buf.get_available_bytes() >= 8:
+			map_seed = buf.get_64()
+		else:
+			push_error("Map file truncated while reading seed")
+			return false
 
 	var names: Array[String] = []
 	var times: Array[float] = []
@@ -182,7 +182,7 @@ func decode_map(bytes: PackedByteArray) -> bool:
 		types.append(frame_type as ImageUtils.Frame_Types)
 		textures.append(ImageTexture.create_from_image(img))
 
-	
+	# Assign decoded data back into ImageUtils
 	ImageUtils.texture_names = names
 	ImageUtils.texture_unixTime = times
 	ImageUtils.texture_frame_types = types
@@ -190,6 +190,10 @@ func decode_map(bytes: PackedByteArray) -> bool:
 	ImageUtils.total_images = count
 	ImageUtils.prop_ratio = prop_ratio
 	ImageUtils.percent_empty = percent_empty
+	
+	# Apply loaded or fallback seed and update RNG
+	ImageUtils.seed = map_seed
+	ImageUtils.reset_seed()
 	ImageUtils.calc_total_slots(prop_ratio)
 
 	return true
